@@ -269,6 +269,11 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
     log.debug(e);
     this.order = null;
     this.cancellingOrder = false;
+    
+    // UNDER TEST (3015)
+    // CUBIT151018 - re-read balance following an error (to prevent 'NOT buying, already exposed' when we are not actually exposed, and vice versa!
+    this.balance = this.portfolio.currency + this.portfolio.asset * this.price;
+    this.exposure = (this.portfolio.asset * this.price) / this.balance;
 
     this.deferredEmit('tradeErrored', {
       id,

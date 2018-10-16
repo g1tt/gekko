@@ -437,7 +437,7 @@ Trader.getCapabilities = function() {
       { pair: ['BTC', 'ETH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['BTC', 'BCH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['BTC', 'ETC'], minimalOrder: { amount: 0.01, unit: 'asset' } },
-      { pair: ['BTC', 'ZRX'], minimalOrder: { amount: 1, unit: 'asset' } }
+      { pair: ['BTC', 'ZRX'], minimalOrder: { amount: 1, unit: 'asset' } } 
     ],
     requires: ['key', 'secret', 'passphrase'],
     providesHistory: 'date',

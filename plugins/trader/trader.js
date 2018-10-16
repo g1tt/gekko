@@ -269,11 +269,6 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
     log.debug(e);
     this.order = null;
     this.cancellingOrder = false;
-    
-    // UNDER TEST 151018 (3014,3015)
-    // CUBIT151018 - re-read balance following an error (to prevent 'NOT buying, already exposed' when we are not actually exposed, and vice versa!
-    this.balance = this.portfolio.currency + this.portfolio.asset * this.price;
-    this.exposure = (this.portfolio.asset * this.price) / this.balance;
 
     this.deferredEmit('tradeErrored', {
       id,
@@ -297,17 +292,6 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
           date: moment(),
           reason: err.message
         });
-      }
-
-      // UNDER TEST 161018 (3016)
-      // CUBIT 161018 - here I want to catch this date - 1970-01-01T00:00:00.000 - and...
-      // 1/ ideally query the exchange account for the actual date/time (although this might fail if the reason we've errored is because the API is currently blocked!)
-      // err...
-      // 2/ but initially/more likely set to the current date/time!
-      if (summary.date=='1970-01-01T00:00:00.000') {
-        summary.date=new Date().toISOString().replace(/Z/,'');
-        // and log what we've done to the console so I can see if it's worked! :)
-        log.info('[ERROR] amended null date to :', summary.date);
       }
 
       log.info('[ORDER] summary:', summary);

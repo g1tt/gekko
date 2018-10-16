@@ -299,6 +299,16 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
         });
       }
 
+      // CUBIT 161018 - here I want to catch this date - 1970-01-01T00:00:00.000 - and...
+      // 1/ ideally query the exchange account for the actual date/time (although this might fail if the reason we've errored is because the API is currently blocked!)
+      // err...
+      // 2/ but initially/more likely set to the current date/time!
+      if (summary.date=='1970-01-01T00:00:00.000') {
+        summary.date=new Date().toISOString().replace(/Z/,'');
+        // and log what we've done to the console so I can see if it's worked! :)
+        log.info('[ERROR] amended null date to :', summary.date);
+      }
+
       log.info('[ORDER] summary:', summary);
       this.order = null;
       this.sync(() => {

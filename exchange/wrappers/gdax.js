@@ -415,19 +415,17 @@ Trader.getCapabilities = function() {
     slug: 'gdax',
     currencies: ['USD', 'EUR', 'GBP', 'BTC'],
     assets: ['BTC', 'LTC', 'ETH', 'BCH', 'ETC'],
-    markets: [      
+    markets: [
       { pair: ['USD', 'BTC'], minimalOrder: { amount: 0.001, unit: 'asset' } },
       { pair: ['USD', 'LTC'], minimalOrder: { amount: 0.1, unit: 'asset' } },
       { pair: ['USD', 'ETH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['USD', 'BCH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['USD', 'ETC'], minimalOrder: { amount: 0.01, unit: 'asset' } },
-      { pair: ['USD', 'ZRX'], minimalOrder: { amount: 1, unit: 'asset' } },
       { pair: ['EUR', 'BTC'], minimalOrder: { amount: 0.001, unit: 'asset' } },
       { pair: ['EUR', 'LTC'], minimalOrder: { amount: 0.1, unit: 'asset' } },
       { pair: ['EUR', 'ETH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['EUR', 'BCH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['EUR', 'ETC'], minimalOrder: { amount: 0.01, unit: 'asset' } },
-      { pair: ['EUR', 'ZRX'], minimalOrder: { amount: 1, unit: 'asset' } },
       { pair: ['GBP', 'BTC'], minimalOrder: { amount: 0.001, unit: 'asset' } },
       { pair: ['GBP', 'LTC'], minimalOrder: { amount: 0.1, unit: 'asset' } },
       { pair: ['GBP', 'ETH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
@@ -437,7 +435,6 @@ Trader.getCapabilities = function() {
       { pair: ['BTC', 'ETH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['BTC', 'BCH'], minimalOrder: { amount: 0.01, unit: 'asset' } },
       { pair: ['BTC', 'ETC'], minimalOrder: { amount: 0.01, unit: 'asset' } },
-      { pair: ['BTC', 'ZRX'], minimalOrder: { amount: 1, unit: 'asset' } }
     ],
     requires: ['key', 'secret', 'passphrase'],
     providesHistory: 'date',

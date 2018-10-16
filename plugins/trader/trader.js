@@ -270,7 +270,7 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
     this.order = null;
     this.cancellingOrder = false;
     
-    // UNDER TEST (3015)
+    // UNDER TEST 151018 (3014,3015)
     // CUBIT151018 - re-read balance following an error (to prevent 'NOT buying, already exposed' when we are not actually exposed, and vice versa!
     this.balance = this.portfolio.currency + this.portfolio.asset * this.price;
     this.exposure = (this.portfolio.asset * this.price) / this.balance;
@@ -299,6 +299,7 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
         });
       }
 
+      // UNDER TEST 161018 (3016)
       // CUBIT 161018 - here I want to catch this date - 1970-01-01T00:00:00.000 - and...
       // 1/ ideally query the exchange account for the actual date/time (although this might fail if the reason we've errored is because the API is currently blocked!)
       // err...

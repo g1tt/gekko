@@ -269,7 +269,7 @@ Trader.prototype.createOrder = function(side, amount, advice, id) {
     log.debug(e);
     this.order = null;
     this.cancellingOrder = false;
-    
+
     this.deferredEmit('tradeErrored', {
       id,
       adviceId: advice.id,

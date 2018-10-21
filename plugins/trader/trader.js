@@ -169,8 +169,11 @@ Trader.prototype.processAdvice = function(advice) {
 
   if(direction === 'buy') {
 
-    if(this.exposed) {
-      log.info('NOT buying, already exposed');
+    amount = this.portfolio.currency / this.price * 0.95;
+    const check = this.broker.isValidOrder(amount, this.price);
+    
+    if(!check.valid) {
+      log.warn('NOT buying! Reason:', check.reason);
       return this.deferredEmit('tradeAborted', {
         id,
         adviceId: advice.id,
@@ -181,8 +184,6 @@ Trader.prototype.processAdvice = function(advice) {
       });
     }
 
-    amount = this.portfolio.currency / this.price * 0.95;
-
     log.info(
       'Trader',
       'Received advice to go long.',
@@ -191,8 +192,11 @@ Trader.prototype.processAdvice = function(advice) {
 
   } else if(direction === 'sell') {
 
-    if(!this.exposed) {
-      log.info('NOT selling, already no exposure');
+    amount = this.portfolio.asset;
+    const check = this.broker.isValidOrder(amount, this.price);
+
+    if(!check.valid) {
+      log.warn('NOT selling! Reason:', check.reason);
       return this.deferredEmit('tradeAborted', {
         id,
         adviceId: advice.id,
@@ -214,8 +218,6 @@ Trader.prototype.processAdvice = function(advice) {
 
       delete this.activeStopTrigger;
     }
-
-    amount = this.portfolio.asset;
 
     log.info(
       'Trader',
